@@ -32,7 +32,9 @@ class Person {
     }
 }
 // to represent a pet
-interface IPet { }
+interface IPet {
+  boolean sameNamePet();
+}
  
 // to represent a pet cat
 class Cat implements IPet {
@@ -59,6 +61,20 @@ class Dog implements IPet {
         this.male = male;
     }
 }
+    // TEMPLATE
+    
+    /*
+     *  this.name      -- int
+     * 
+     *  METHODS:
+     * 
+     * IPet -> boolean
+     * 
+     *  returns true if this pet name is equal to that given name
+     * */
+    boolean sameNamePet(IPet that){
+      return this.name == that.name;
+    }
 
 class ExamplesIPet{
     ExamplesIPet(){}
@@ -67,6 +83,7 @@ class ExamplesIPet{
             IPet mitzi = new Cat ("Mitzi", "Shi Tzu", false);
             IPet aya = new Dog ("Aya", "Chihuahua", true);
             IPet tim = new Cat ("Tim", "Husky", true);
+            IPet sab = new Cat ("Tim", "Husky", true);
 
             Person dionne = new Person ("Dionne", raprap, 15); 
             Person kristine = new Person ("Kristine", mitzi, 16); 
@@ -83,4 +100,9 @@ class ExamplesIPet{
                     t.checkExpect(dionne.isOlder(jazzryn), false) &&
                     t.checkExpect(dionne.isOlder(timothy), false);
         }
+            boolean testSameNamePet(Tester t){
+              return 
+                    t.checkExpect(raprap.sameNamePet(mitzi), false) &&
+                    t.checkExpect(raprap.sameNamePet(sab), true);
+            }
 }
